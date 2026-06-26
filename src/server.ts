@@ -2,15 +2,15 @@
 import { Server } from "http";
 import app from "./app";
 import { envConfig } from "./app/config/env";
+import mongoose from "mongoose";
 
 let server: Server;
 
 const startServer = async () => {
   try {
-    // Initialize your database/network connection here
-    // await mongoose.connect('mongodb://localhost:27017/myapp');
+    await mongoose.connect(envConfig.DB_URL);
 
-    console.log("Dummy network connected successfully");
+    console.log("Database connected successfully");
     server = app.listen(envConfig.PORT, () =>
       console.log(
         `Server is running on port http://localhost:${envConfig.PORT}`,

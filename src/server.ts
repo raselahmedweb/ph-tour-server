@@ -3,6 +3,7 @@ import { Server } from "http";
 import app from "./app";
 import { envConfig } from "./app/config/env";
 import mongoose from "mongoose";
+import { seedSuperAdmin } from "./app/utils/seedSuperAdmin";
 
 let server: Server;
 
@@ -21,7 +22,10 @@ const startServer = async () => {
   }
 };
 
-startServer();
+(async () => {
+  await startServer();
+  await seedSuperAdmin();
+})();
 
 //* Error handleing
 
